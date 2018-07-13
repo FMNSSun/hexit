@@ -1,11 +1,13 @@
 package hexit
 
+// Alphabet to use. Is initialised to use
+// lower-case letters and digits: 0-9a-f
 var Alphabet = []byte{
 	'0', '1', '2', '3', '4', '5', '6', '7',
 	'8', '9', 'a', 'b', 'c', 'd', 'e', 'f',
 }
 
-// HexUint8 returns a hexadecimal representation
+// HexUint8Str returns a hexadecimal representation
 // of its argument as string.
 func HexUint8Str(i uint8) string {
 	return string(HexUint8(i))
@@ -63,7 +65,7 @@ func HexUint16To(i uint16, dst []byte) {
 	dst[3] = Alphabet[ll]
 }
 
-// HexUint32 returns a hexadecimal representation
+// HexUint32Str returns a hexadecimal representation
 // of its argument as string.
 func HexUint32Str(i uint32) string {
 	return string(HexUint32(i))
@@ -111,7 +113,7 @@ func HexUint32To(i uint32, dst []byte) {
 	dst[7] = Alphabet[al]
 }
 
-// HexUint64 returns a hexadecimal representation
+// HexUint64Str returns a hexadecimal representation
 // of its argument as string.
 func HexUint64Str(i uint64) string {
 	return string(HexUint64(i))

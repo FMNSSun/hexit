@@ -9,7 +9,7 @@ import (
 )
 
 func TestHexUint8(t *testing.T) {
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 8192; i++ {
 		n := uint8(rand.Intn(256))
 		exp := []byte(fmt.Sprintf("%02x", n))
 		got := HexUint8(n)
@@ -43,7 +43,7 @@ func BenchmarkStrconvAppendUint8(b *testing.B) {
 }
 
 func TestHexUint16(t *testing.T) {
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 8192; i++ {
 		n := uint16(rand.Intn(65536))
 		exp := []byte(fmt.Sprintf("%04x", n))
 		got := HexUint16(n)
@@ -77,7 +77,7 @@ func BenchmarkStrconvAppendUint16(b *testing.B) {
 }
 
 func TestHexUint32(t *testing.T) {
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 8192; i++ {
 		n := uint32(rand.Intn(4294967296))
 		exp := []byte(fmt.Sprintf("%08x", n))
 		got := HexUint32(n)
@@ -126,7 +126,7 @@ func BenchmarkStrconvFormatUint32(b *testing.B) {
 }
 
 func TestHexUint64(t *testing.T) {
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 8192; i++ {
 		n := rand.Uint64()
 		exp := []byte(fmt.Sprintf("%016x", n))
 		got := HexUint64(n)
@@ -167,7 +167,7 @@ func BenchmarkStrconvFormatUint64(b *testing.B) {
 }
 
 func TestHexUint8To(t *testing.T) {
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 8192; i++ {
 		n := uint8(rand.Intn(256))
 		exp := []byte(fmt.Sprintf("%02x", n))
 		got := make([]byte, 2)
@@ -181,7 +181,7 @@ func TestHexUint8To(t *testing.T) {
 }
 
 func TestHexUint16To(t *testing.T) {
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 8192; i++ {
 		n := uint16(rand.Intn(65536))
 		exp := []byte(fmt.Sprintf("%04x", n))
 		got := make([]byte, 4)
@@ -195,7 +195,7 @@ func TestHexUint16To(t *testing.T) {
 }
 
 func TestHexUint32To(t *testing.T) {
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 8192; i++ {
 		n := rand.Uint32()
 		exp := []byte(fmt.Sprintf("%08x", n))
 		got := make([]byte, 8)
@@ -209,7 +209,7 @@ func TestHexUint32To(t *testing.T) {
 }
 
 func TestHexUint64To(t *testing.T) {
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 8192; i++ {
 		n := rand.Uint64()
 		exp := []byte(fmt.Sprintf("%016x", n))
 		got := make([]byte, 16)
