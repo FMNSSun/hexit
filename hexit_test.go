@@ -8,6 +8,59 @@ import (
 	"testing"
 )
 
+func TestUnhexUint8(t *testing.T) {
+	for i := 0; i < 8192; i++ {
+		exp := uint8(rand.Intn(256))
+		s := []byte(fmt.Sprintf("%02x", exp))
+		got := UnhexUint8(s)
+
+		if exp != got {
+			t.Errorf("Expected %x but got %x", exp, got)
+			return
+		}
+	}
+}
+
+func TestUnhexUint16(t *testing.T) {
+	for i := 0; i < 8192; i++ {
+		exp := uint16(rand.Intn(65536))
+		s := []byte(fmt.Sprintf("%04x", exp))
+		got := UnhexUint16(s)
+
+		if exp != got {
+			t.Errorf("Expected %x but got %x", exp, got)
+			return
+		}
+	}
+}
+
+func TestUnhexUint32(t *testing.T) {
+	for i := 0; i < 8192; i++ {
+		exp := rand.Uint32()
+		s := []byte(fmt.Sprintf("%08x", exp))
+		got := UnhexUint32(s)
+
+		if exp != got {
+			t.Errorf("Expected %x but got %x", exp, got)
+			return
+		}
+	}
+}
+
+func TestUnhexUint64(t *testing.T) {
+	for i := 0; i < 8192; i++ {
+		exp := rand.Uint64()
+		s := []byte(fmt.Sprintf("%016x", exp))
+		got := UnhexUint64(s)
+
+		if exp != got {
+			t.Errorf("Expected %x but got %x", exp, got)
+			return
+		}
+	}
+}
+
+
 func TestHexUint8(t *testing.T) {
 	for i := 0; i < 8192; i++ {
 		n := uint8(rand.Intn(256))
@@ -34,57 +87,6 @@ func TestHexUint8Str(t *testing.T) {
 	}
 }
 
-func TestUnhexUint8Str(t *testing.T) {
-	for i := 0; i < 8192; i++ {
-		exp := uint8(rand.Intn(256))
-		s := fmt.Sprintf("%02x", exp)
-		got := UnhexUint8Str(s)
-
-		if exp != got {
-			t.Errorf("Expected %x but got %x", exp, got)
-			return
-		}
-	}
-}
-
-func TestUnhexUint16Str(t *testing.T) {
-	for i := 0; i < 8192; i++ {
-		exp := uint16(rand.Intn(65536))
-		s := fmt.Sprintf("%04x", exp)
-		got := UnhexUint16Str(s)
-
-		if exp != got {
-			t.Errorf("Expected %x but got %x", exp, got)
-			return
-		}
-	}
-}
-
-func TestUnhexUint32Str(t *testing.T) {
-	for i := 0; i < 8192; i++ {
-		exp := rand.Uint32()
-		s := fmt.Sprintf("%08x", exp)
-		got := UnhexUint32Str(s)
-
-		if exp != got {
-			t.Errorf("Expected %x but got %x", exp, got)
-			return
-		}
-	}
-}
-
-func TestUnhexUint64Str(t *testing.T) {
-	for i := 0; i < 8192; i++ {
-		exp := rand.Uint64()
-		s := fmt.Sprintf("%016x", exp)
-		got := UnhexUint64Str(s)
-
-		if exp != got {
-			t.Errorf("Expected %x but got %x", exp, got)
-			return
-		}
-	}
-}
 
 func BenchmarkHexUint8(b *testing.B) {
 	for i := 0; i < b.N; i++ {
