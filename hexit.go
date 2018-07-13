@@ -31,7 +31,7 @@ func HexUint8To(i uint8, dst []byte) {
 	dst[1] = Alphabet[l]
 }
 
-// HexUint16 returns a hexadecimal representation
+// HexUint16Str returns a hexadecimal representation
 // of its argument as string.
 func HexUint16Str(i uint16) string {
 	return string(HexUint16(i))
@@ -71,7 +71,7 @@ func HexUint32Str(i uint32) string {
 	return string(HexUint32(i))
 }
 
-// HexUint16 retruns a hexadecimal representation
+// HexUint32 retruns a hexadecimal representation
 // of its argument.
 func HexUint32(i uint32) []byte {
 	al := i & 0x0F
