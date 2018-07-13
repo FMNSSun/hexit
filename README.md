@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/FMNSSun/hexit)](https://goreportcard.com/report/github.com/FMNSSun/hexit)
+
 # hexit
 
 Hexit provides utility functions to convert `uint*` to hex. It's faster than using `fmt.Sprintf`, `strconv.AppendUint`
