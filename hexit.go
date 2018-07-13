@@ -7,10 +7,25 @@ var Alphabet = []byte{
 	'8', '9', 'a', 'b', 'c', 'd', 'e', 'f',
 }
 
+var Table []string
+
+func init() {
+	BuildTable()
+}
+
+// BuildTable re-builds the uint8 lookup table.
+func BuildTable() {
+	Table = make([]string, 256)
+
+	for i := 0; i < 256; i++ {
+		Table[i] = string(HexUint8(uint8(i)))
+	}
+}
+
 // HexUint8Str returns a hexadecimal representation
 // of its argument as string.
 func HexUint8Str(i uint8) string {
-	return string(HexUint8(i))
+	return Table[i]
 }
 
 // HexUint8 returns a hexadecimal representation
