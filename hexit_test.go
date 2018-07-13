@@ -96,6 +96,14 @@ func BenchmarkHexUint32(b *testing.B) {
 	}
 }
 
+func BenchmarkHexUint32To(b *testing.B) {
+	dst := make([]byte, 8)
+	for i := 0; i < b.N; i++ {
+		n := uint32(rand.Intn(4294967296))
+		HexUint32To(n, dst)
+	}
+}
+
 func BenchmarkFmtUint32(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		n := uint32(rand.Intn(4294967296))
@@ -141,6 +149,13 @@ func BenchmarkFmtUint64(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		n := rand.Uint64()
 		_ = fmt.Sprintf("%016x", n)
+	}
+}
+
+func BenchmarkStrconvAppendUint64(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		n := rand.Uint32()
+		_ = strconv.AppendInt(nil, int64(n), 16)
 	}
 }
 
