@@ -1,13 +1,16 @@
 package hexit
 
 // Alphabet to use. Is initialised to use
-// lower-case letters and digits: 0-9a-f
+// lower-case letters and digits: 0-9a-f.
+// If you change this please make sure that
+// you call BuildTable() to rebuild internal
+// lookup tables!
 var Alphabet = []byte{
 	'0', '1', '2', '3', '4', '5', '6', '7',
 	'8', '9', 'a', 'b', 'c', 'd', 'e', 'f',
 }
 
-var Table []string
+var table []string
 var revTable []uint8
 var revTable8 []uint8
 
@@ -17,10 +20,10 @@ func init() {
 
 // BuildTable re-builds the uint8 lookup table.
 func BuildTable() {
-	Table = make([]string, 256)
+	table = make([]string, 256)
 
 	for i := 0; i < 256; i++ {
-		Table[i] = string(HexUint8(uint8(i)))
+		table[i] = string(HexUint8(uint8(i)))
 	}
 
 	revTable = make([]uint8, 256)
@@ -149,7 +152,7 @@ func UnhexUint64Str(buf string) uint64 {
 // HexUint8Str returns a hexadecimal representation
 // of its argument as string.
 func HexUint8Str(i uint8) string {
-	return Table[i]
+	return table[i]
 }
 
 // HexUint8 returns a hexadecimal representation
