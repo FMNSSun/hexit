@@ -1,11 +1,11 @@
 package hexit
 
 import (
-	"testing"
 	"bytes"
-	"math/rand"
 	"fmt"
+	"math/rand"
 	"strconv"
+	"testing"
 )
 
 func TestHexUint8(t *testing.T) {

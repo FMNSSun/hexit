@@ -1,8 +1,8 @@
 package hexit
 
 var Alphabet = []byte{
-	'0','1','2','3','4','5','6','7',
-	'8','9','a','b','c','d','e','f',
+	'0', '1', '2', '3', '4', '5', '6', '7',
+	'8', '9', 'a', 'b', 'c', 'd', 'e', 'f',
 }
 
 // HexUint8 returns a hexadecimal representation
@@ -56,13 +56,12 @@ func HexUint16To(i uint16, dst []byte) {
 	lh := (i >> 4) & 0x0F
 	hl := (i >> 8) & 0x0F
 	hh := (i >> 12) & 0x0F
-	
+
 	dst[0] = Alphabet[hh]
 	dst[1] = Alphabet[hl]
 	dst[2] = Alphabet[lh]
 	dst[3] = Alphabet[ll]
 }
-
 
 // HexUint32 returns a hexadecimal representation
 // of its argument as string.
@@ -101,7 +100,7 @@ func HexUint32To(i uint32, dst []byte) {
 	ch := (i >> 20) & 0x0F
 	dl := (i >> 24) & 0x0F
 	dh := (i >> 28) & 0x0F
-	
+
 	dst[0] = Alphabet[dh]
 	dst[1] = Alphabet[dl]
 	dst[2] = Alphabet[ch]
@@ -169,7 +168,7 @@ func HexUint64To(i uint64, dst []byte) {
 	gh := (i >> 52) & 0x0F
 	hl := (i >> 56) & 0x0F
 	hh := (i >> 60) & 0x0F
-	
+
 	dst[0] = Alphabet[hh]
 	dst[1] = Alphabet[hl]
 	dst[2] = Alphabet[gh]
