@@ -19,3 +19,7 @@ buf := hexit.HexUint32(num)
 ```go
 str := hexit.HexUint16(num)
 ```
+
+```go
+num := UnhexUint16("beef")
+```

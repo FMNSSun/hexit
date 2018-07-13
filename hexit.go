@@ -8,6 +8,8 @@ var Alphabet = []byte{
 }
 
 var Table []string
+var revTable []uint8
+var revTable8 []uint8
 
 func init() {
 	BuildTable()
@@ -20,6 +22,128 @@ func BuildTable() {
 	for i := 0; i < 256; i++ {
 		Table[i] = string(HexUint8(uint8(i)))
 	}
+
+	revTable = make([]uint8, 256)
+
+	for i, v := range Alphabet {
+		revTable[v] = uint8(i)
+	}
+}
+
+// UnhexUint8 converts from hexadecimal representation
+// to uint8. Buf must be at least two bytes long.
+func UnhexUint8(buf []byte) uint8 {
+	h := revTable[buf[0]]
+	l := revTable[buf[1]]
+	return (h << 4) | l
+}
+
+// UnhexUint8Str converts from hexadecimal representation
+// to uint8. Buf must be at least two bytes long.
+func UnhexUint8Str(buf string) uint8 {
+	h := revTable[buf[0]]
+	l := revTable[buf[1]]
+	return (h << 4) | l
+}
+
+// UnhexUint16 converts from hexadecimal representation
+// to uint16. Buf must be at least 4 bytes long.
+func UnhexUint16(buf []byte) uint16 {
+	ah := uint16(revTable[buf[0]])
+	al := uint16(revTable[buf[1]])
+	bh := uint16(revTable[buf[2]])
+	bl := uint16(revTable[buf[3]])
+	return (ah << 12) | (al << 8) | (bh << 4) | bl
+}
+
+// UnhexUint16Str converts from hexadecimal representation
+// to uint16. Buf must be at least 4 bytes long.
+func UnhexUint16Str(buf string) uint16 {
+	ah := uint16(revTable[buf[0]])
+	al := uint16(revTable[buf[1]])
+	bh := uint16(revTable[buf[2]])
+	bl := uint16(revTable[buf[3]])
+	return (ah << 12) | (al << 8) | (bh << 4) | bl
+}
+
+// UnhexUint32 converts from hexadecimal representation
+// to uint32. Buf must be at least 8 bytes long.
+func UnhexUint32(buf []byte) uint32 {
+	ah := uint32(revTable[buf[0]])
+	al := uint32(revTable[buf[1]])
+	bh := uint32(revTable[buf[2]])
+	bl := uint32(revTable[buf[3]])
+	ch := uint32(revTable[buf[4]])
+	cl := uint32(revTable[buf[5]])
+	dh := uint32(revTable[buf[6]])
+	dl := uint32(revTable[buf[7]])
+	return (ah << 28) | (al << 24) | (bh << 20) | (bl << 16) | (ch << 12) | (cl << 8) | (dh << 4) | dl
+}
+
+// UnhexUint32Str converts from hexadecimal representation
+// to uint32. Buf must be at least 8 bytes long.
+func UnhexUint32Str(buf string) uint32 {
+	ah := uint32(revTable[buf[0]])
+	al := uint32(revTable[buf[1]])
+	bh := uint32(revTable[buf[2]])
+	bl := uint32(revTable[buf[3]])
+	ch := uint32(revTable[buf[4]])
+	cl := uint32(revTable[buf[5]])
+	dh := uint32(revTable[buf[6]])
+	dl := uint32(revTable[buf[7]])
+	return (ah << 28) | (al << 24) | (bh << 20) | (bl << 16) | (ch << 12) | (cl << 8) | (dh << 4) | dl
+}
+
+// UnhexUint64 converts from hexadecimal representation
+// to uint32. Buf must be at least 8 bytes long.
+func UnhexUint64(buf []byte) uint64 {
+	ah := uint64(revTable[buf[0]])
+	al := uint64(revTable[buf[1]])
+	bh := uint64(revTable[buf[2]])
+	bl := uint64(revTable[buf[3]])
+	ch := uint64(revTable[buf[4]])
+	cl := uint64(revTable[buf[5]])
+	dh := uint64(revTable[buf[6]])
+	dl := uint64(revTable[buf[7]])
+	eh := uint64(revTable[buf[8]])
+	el := uint64(revTable[buf[9]])
+	fh := uint64(revTable[buf[10]])
+	fl := uint64(revTable[buf[11]])
+	gh := uint64(revTable[buf[12]])
+	gl := uint64(revTable[buf[13]])
+	hh := uint64(revTable[buf[14]])
+	hl := uint64(revTable[buf[15]])
+
+	s := (ah << 60) | (al << 56) | (bh << 52) | (bl << 48) | (ch << 44) | (cl << 40) | (dh << 36) | (dl << 32)
+	s |= (eh << 28) | (el << 24) | (fh << 20) | (fl << 16) | (gh << 12) | (gl << 8) | (hh << 4) | hl
+
+	return s
+}
+
+// UnhexUint64Str converts from hexadecimal representation
+// to uint32. Buf must be at least 16 bytes long.
+func UnhexUint64Str(buf string) uint64 {
+	ah := uint64(revTable[buf[0]])
+	al := uint64(revTable[buf[1]])
+	bh := uint64(revTable[buf[2]])
+	bl := uint64(revTable[buf[3]])
+	ch := uint64(revTable[buf[4]])
+	cl := uint64(revTable[buf[5]])
+	dh := uint64(revTable[buf[6]])
+	dl := uint64(revTable[buf[7]])
+	eh := uint64(revTable[buf[8]])
+	el := uint64(revTable[buf[9]])
+	fh := uint64(revTable[buf[10]])
+	fl := uint64(revTable[buf[11]])
+	gh := uint64(revTable[buf[12]])
+	gl := uint64(revTable[buf[13]])
+	hh := uint64(revTable[buf[14]])
+	hl := uint64(revTable[buf[15]])
+
+	s := (ah << 60) | (al << 56) | (bh << 52) | (bl << 48) | (ch << 44) | (cl << 40) | (dh << 36) | (dl << 32)
+	s |= (eh << 28) | (el << 24) | (fh << 20) | (fl << 16) | (gh << 12) | (gl << 8) | (hh << 4) | hl
+
+	return s
 }
 
 // HexUint8Str returns a hexadecimal representation
